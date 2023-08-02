@@ -1,16 +1,50 @@
 import React, { useState } from "react";
 
 function Categorize() {
-  const [isHidden, setIsHidden] = useState(false);
+  const [isHidden, setIsHidden] = useState(true);
   const [category, setCategory] = useState([{ id: 1, val: "" }]);
   const [item, setItem] = useState([{ id: 1, val: "" }]);
   const [inp, setInpu] = useState("");
 
+  console.log(...category);
+  // const postData = (e) => {
+  //   e.preventDefault();
+  //   console.log("POST");
+  //   fetch("/categorize", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify(category),
+  //   })
+  //     .then((res) => res.json())
+  //     .then((data) => console.log(data));
+  // };
+
+  const postData = (e) => {
+    e.preventDefault();
+    console.log("POST");
+    fetch("/categorize", {
+      // Update the route to /categorize
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(category),
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data))
+      .catch((err) => console.log(err));
+  };
   return (
     <div className="flex flex-col  items-center">
       <h1 className="text-6xl font-bold">Categorize</h1>
 
-      <form className=" flex justify-center border-solid border-2 mt-10 w-1/2 font-sans shadow-2xl rounded-2xl">
+      <form
+        onSubmit={postData}
+        method="post"
+        className=" flex justify-center border-solid border-2 mt-10 w-1/2 font-sans shadow-2xl rounded-2xl"
+      >
         <div className="grid grid-cols-3 place-content-start gap-2 w-11/12 my-5">
           <input
             type="text"
@@ -154,6 +188,12 @@ function Categorize() {
               })}
             </div>
           </div>
+          <button
+            type="submit"
+            className="bg-blue-700 text-fuchsia-50 rounded-2xl"
+          >
+            Submit
+          </button>
         </div>
       </form>
     </div>

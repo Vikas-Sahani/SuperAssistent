@@ -4,6 +4,8 @@ const router = require("./routes/router");
 
 const app = express();
 
+app.use(express.json());
+
 app.use(router);
 
 const port = process.env.PORT || 5000;
