@@ -4,9 +4,6 @@ const Category = require("../models/CategorySchema");
 
 router.post("/categorize", async (req, res) => {
   const [desc, category, item] = req.body;
-  console.log("desc -> ", desc);
-  console.log("category -> ", category);
-  console.log("item -> ", item);
   console.log("req.body -> ", req.body);
 
   // const CategoryArr = req.body;
@@ -54,6 +51,12 @@ router.post("/categorize", async (req, res) => {
   }
 
   return res.status(300).json({ msg: req.body });
+});
+
+router.get("/", async (req, res) => {
+  const findCategoryQn = await Category.find();
+  console.log("find category questions => ", findCategoryQn);
+  return res.status(200).json(findCategoryQn);
 });
 
 module.exports = router;
