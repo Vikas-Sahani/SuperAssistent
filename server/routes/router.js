@@ -7,6 +7,8 @@ router.post("/categorize", async (req, res) => {
   console.log("desc -> ", desc);
   console.log("category -> ", category);
   console.log("item -> ", item);
+  console.log("req.body -> ", req.body);
+
   // const CategoryArr = req.body;
 
   // const isCategoryEmpty = false;
@@ -39,7 +41,11 @@ router.post("/categorize", async (req, res) => {
         .status(404)
         .json({ err: "pls write a different description of the question" });
     } else {
-      const newCategory = new Category({ desc, category, item });
+      const newCategory = new Category({
+        desc,
+        Categories: category,
+        Items: item,
+      });
       console.log("line 43 -> ", newCategory);
       newCategory.save();
     }

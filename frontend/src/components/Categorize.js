@@ -215,7 +215,7 @@ function Categorize() {
             </div>
           </div>
           <span
-            className="text-center ease-in-out duration-1000 col-span-full p-1 rounded-2xl bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 "
+            className="text-center col-span-full p-1 rounded-2xl bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 ease-in-out duration-900"
             onClick={(event) => postData(event)}
           >
             Submit
