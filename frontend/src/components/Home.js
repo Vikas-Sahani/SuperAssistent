@@ -1,4 +1,6 @@
 import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
+// import Categorize from "./Categorize";
 
 function Home() {
   const [gtCtgryQn, setGtCtgryQn] = React.useState("");
@@ -17,33 +19,37 @@ function Home() {
     } catch (error) {
       console.log(error);
     }
-
-    // .then((res) => {
-    //   // console.log(res.json());
-    //   return res.json();
-    // })
-    // .then((data) => {
-    //   console.log(data);
-    //   setGtCtgryQn(data);
-    // });
   };
   useEffect(() => {
     getData();
   }, []);
 
   return (
-    <div>
+    <div className="grid place-items-center place-content-center">
       <>
-        <h1>Categories Questions</h1>
+        <h1 className="text-5xl">Categories Questions</h1>
         {gtCtgryQn ? (
-          <>
-            "category has some question questions"{" "}
-            {gtCtgryQn.map((data, id) => {
-              return <li key={id}>{!data ? data : ""}</li>;
-            })}
-          </>
+          gtCtgryQn.map((data, idx) => {
+            return (
+              <div key={idx} className="QuestionContainer">
+                <h3>{data.desc}</h3>
+                <div className="ItemContainer">
+                  {data.Items.map((item) => {
+                    return <span>{item.val} &nbsp;</span>;
+                  })}
+                </div>
+                <div>
+                  {data.Categories.map((Category) => {
+                    return <div>{Category.val} &nbsp;</div>;
+                  })}
+                </div>
+              </div>
+            );
+          })
         ) : (
-          <>"no question"</>
+          <>
+            <Link to="/categorize">"no question"</Link>
+          </>
         )}
       </>
     </div>
